@@ -12,7 +12,7 @@ contract MetaCoin {
 	mapping (address => uint) balances;
 
 	event Transfer(address indexed _from, address indexed _to, uint256 _value);
-
+	event Success(uint256 _value);
 	constructor() {
 		balances[tx.origin] = 10000;
 	}
@@ -22,6 +22,7 @@ contract MetaCoin {
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
 		emit Transfer(msg.sender, receiver, amount);
+		emit Success(amount);
 		return true;
 	}
 
@@ -33,3 +34,4 @@ contract MetaCoin {
 		return balances[addr];
 	}
 }
+
