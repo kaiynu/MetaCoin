@@ -21,7 +21,7 @@ contract Greeting {
    }
     function withdraw(uint256 amount) external {
         // This forwards all available gas. Be sure to check the return value!
-        (bool success, ) = msg.sender.call({'value':amount});
-        require(success, "Transfer failed.");
+         (bool sent, bytes memory data)  = msg.sender.call{value:amount}("");
+        require(sent, "Transfer failed.");
     }
 }
